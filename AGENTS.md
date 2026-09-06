@@ -1,0 +1,21 @@
+# Repository instructions
+- Use npm and Svelte; keep package-lock.json committed.
+- Use rg/rg --files first when searching the repository.
+- Keep this file at or below 40 lines. Preserve tool instructions; update only high-impact architecture/conventions as needed.
+- Update README.md when human workflow changes; keep run/use instructions brief.
+- Add a dated root log.md entry after each completed request or coherent change, recording reasoning, limits, and validation; never include secrets, personal data, or transcripts.
+- Maintain material product/architecture/privacy/storage/security decisions in docs/ and label them proposed, approved, or implemented.
+- Add comprehensive JSDoc to new named functions/classes; use comments sparingly for intent and edge cases.
+- This repository is the standalone Drift Dash website; ../geimas is the app source and screenshot origin.
+- Use SvelteKit with adapter-static; prerender all routes, trailingSlash='always', csr=false.
+- Preserve readable static HTML: no runtime server, analytics, cookies, browser storage, or client JS is needed.
+- Keep homepage, /support/, and /privacy/ working on direct requests without an SPA fallback.
+- Prefix internal routes and assets with $app/paths base. CI uses configure-pages base_path/base_url for project, user, and custom-domain sites.
+- Keep public identity, support email, dates, and release details in src/lib/site.json; never invent identity or contact details.
+- The owner approved no advertising in v1. App source still has AdMob code; track release reconciliation in docs/app-store-readiness.md.
+- Keep privacyReviewed=false until identity, operational policy, and the actual no-ads release are verified.
+- Keep release validation in the Pages workflow. Pull requests validate without publishing; only main deploys with Pages/OIDC permissions.
+- Reuse original app screenshots in static/screenshots; do not generate or alter gameplay evidence. Preserve asset provenance in docs/assets.md.
+- Host fonts locally. Do not invent an App Store URL, rating, availability date, accessibility certification, or badge.
+- Run npm run check, npm run build, and npm run verify. Validate BASE_PATH=/geimas-website for routing changes.
+- Do not add tests for cosmetic changes; retain meaningful static link/asset and publication checks.

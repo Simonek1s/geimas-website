@@ -1,0 +1,32 @@
+{
+  "name": "drift-dash-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "dev": "vite dev --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+    "verify": "node scripts/verify-build.mjs",
+    "check:release": "node scripts/check-release.mjs",
+    "build:release": "npm run check:release && npm run check && npm run build && npm run verify",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@fontsource/barlow-condensed": "^5.2.6",
+    "@fontsource/inter": "^5.2.6",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.37.0",
+    "@sveltejs/vite-plugin-svelte": "^5.1.1",
+    "prettier": "^3.9.6",
+    "prettier-plugin-svelte": "^3.5.2",
+    "svelte": "^5.38.0",
+    "svelte-check": "^4.3.1",
+    "typescript": "^5.9.2",
+    "vite": "^6.3.5"
+  }
+}
