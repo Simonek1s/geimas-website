@@ -70,3 +70,21 @@ step and upload command. The legal identity and policy-review flag remain
 pending. Formatting and staged whitespace checks passed. No app code or website
 publication was changed, and runtime tests were not repeated for these Git and
 documentation-only changes.
+
+## 2026-09-06 — Upload after repository invitation acceptance
+
+Confirmed repository write access after invitation acceptance and successfully
+pushed the prepared website, five original screenshots, and Pages workflow to
+main. The local branch now tracks origin/main. Updated the README and deployment
+documents to remove the resolved upload blocker and record the current release
+status.
+
+Validation: the initial push triggered GitHub Actions run 34037490323; locked
+dependency installation and Svelte checks passed with zero errors or warnings.
+The configure-pages step failed with Not Found because Pages is not enabled,
+and deployment was skipped. The repository owner must select GitHub Actions as
+the Pages source; the current collaborator has no administration permission.
+Legal identity and privacy review remain unset, so enabling Pages alone will
+not make the release checks pass. No public site or app changes were deployed.
+Only documentation changed after the verified source upload; formatting and
+whitespace checks cover those changes without repeating runtime tests.

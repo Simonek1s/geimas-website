@@ -16,17 +16,20 @@ Format source changes with `npm run format`.
 
 ## Publish with GitHub Pages
 
-The local `main` branch is committed and `origin` points to the repository below.
-Uploading currently requires GitHub write access: the configured Git account was
-denied. Give that account collaborator access or authenticate Git with an account
-that already has write access, then run `git push -u origin main`.
+The website source is uploaded to `main`, and the local branch tracks
+`origin/main`. GitHub write access is working. The first Actions run passed the
+dependency install and Svelte checks, then stopped because Pages is not enabled.
+The repository owner must enable Pages as described below; the current
+collaborator has write access but no administration access.
 
 1. Use [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website),
    the selected website repository, with a `main` branch.
 2. Complete `src/lib/site.json`: confirm the developer's legal identity and review
    the policy and v1 release against `docs/app-store-readiness.md`. Only then set
    `privacyReviewed` to `true`. Contact details are public; never put secrets here.
-3. In the repository, select **Settings → Pages → Source → GitHub Actions**.
+3. As the repository owner, open
+   [Settings → Pages](https://github.com/Simonek1s/geimas-website/settings/pages)
+   and select **Source → GitHub Actions**.
 4. Push to `main`, or run **Deploy website to GitHub Pages** from Actions.
    The workflow uses `npm ci`, checks the site, and deploys `build/`.
    Pull requests build and verify without publishing. Unreviewed policy details
