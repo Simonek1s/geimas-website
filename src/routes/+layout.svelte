@@ -35,7 +35,7 @@
 <footer class="site-footer">
   <div class="shell footer-top">
     <a class="brand footer-brand" href={`${base}/`}>DRIFT DASH<span class="brand-dot">.</span></a>
-    <p>A little escape. A lot of acceleration.</p>
+    <p>One road. One chase. One more run.</p>
     <nav aria-label="Footer navigation">
       <a href={`${base}/support/`}>Support</a>
       <a href={`${base}/privacy/`}>Privacy policy</a>

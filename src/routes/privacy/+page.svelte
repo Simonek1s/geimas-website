@@ -32,8 +32,8 @@
     <div class="notice policy-draft">
       <strong>Policy draft — awaiting release review.</strong>
       <p>
-        This policy describes the planned ad-free v1. Developer identity and release behavior must
-        be confirmed before publication.
+        This policy describes the planned ad-free v1. Its statements must be checked against the
+        released app and support practices before publication.
       </p>
     </div>
   {/if}

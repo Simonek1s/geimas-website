@@ -1,7 +1,7 @@
 # App Store website and v1 release
 
-Status: website implemented; ad-free v1 approved by owner; privacy draft and
-app-release reconciliation pending. Updated: 2026-09-06.
+Status: website implemented; ad-free v1 and developer identity approved by owner;
+privacy draft and app-release reconciliation pending. Updated: 2026-09-06.
 
 ## Website scope
 
@@ -12,19 +12,20 @@ minimum was copied. The inspected Drift Dash UI is English. No unsupported
 minimum iOS version, age rating, store availability, or accessibility claim is
 published.
 
-| App Store field      | Website destination                | State                                                                          |
-| -------------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
-| Support URL          | Final HTTPS site URL + `/support/` | Implemented: visible owner-supplied email, mailto, issue-report guidance, FAQs |
-| Privacy Policy URL   | Final HTTPS site URL + `/privacy/` | Implemented as draft pending responsible identity and operational review       |
-| Marketing URL        | Final HTTPS site URL + `/`         | Implemented: product description and five supplied screenshots                 |
-| Accessibility URL    | Omit                               | App accessibility has not been audited                                         |
-| Account deletion URL | Omit                               | No app accounts or account creation in inspected source                        |
+| App Store field      | Website destination                | State                                                                           |
+| -------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
+| Support URL          | Final HTTPS site URL + `/support/` | Implemented: visible owner-supplied email, mailto, issue-report guidance, FAQs  |
+| Privacy Policy URL   | Final HTTPS site URL + `/privacy/` | Implemented as draft; identity supplied, operational and release review pending |
+| Marketing URL        | Final HTTPS site URL + `/`         | Implemented: conversion-focused product copy and five supplied screenshots      |
+| Accessibility URL    | Omit                               | App accessibility has not been audited                                          |
+| Account deletion URL | Omit                               | No app accounts or account creation in inspected source                         |
 
-The owner needs to establish the actual person/legal entity responsible for the
-policy. This is not the same as selecting the game's brand. Apple uses the legal
-name for individual developer accounts. Organizations may use a registered trade
-name when creating their first app. Keep the legal identity accurate; never
-infer it from an email address or Git author details.
+The owner supplied the responsible developer's name, which is now implemented
+in `src/lib/site.json` and rendered in the policy. This records the owner's
+declaration; it does not independently verify the Apple account. Apple uses the
+legal name for individual developer accounts. Organizations may use a registered
+trade name when creating their first app. Keep the legal identity accurate;
+never infer it from an email address or Git author details.
 
 ## Approved v1 data direction
 
@@ -44,8 +45,14 @@ in the final policy rather than making a blanket “we collect nothing” claim.
 
 ## Before setting privacyReviewed to true
 
-- Set the responsible legal name in `src/lib/site.json`; add address/phone only
-  where applicable law or the developer's business circumstances require them.
+`privacyReviewed` is an implemented project release check, not an Apple review
+status or an application for approval. It records that the policy's descriptions
+match the app that will ship and the developer's actual support operations.
+Supplying the developer name completes the identity field, but does not confirm
+the remaining policy statements or resolve the app's active AdMob path.
+
+- The owner-supplied responsible name is now set in `src/lib/site.json`; add
+  address/phone only where applicable law or business circumstances require them.
 - Review the complete privacy draft against actual support operations: Gmail
   account use, purposes/legal basis, retention criteria, mailbox security,
   recipient roles, international processing and safeguards, and equal protection
@@ -79,13 +86,20 @@ The owner selected [Simonek1s/geimas-website](https://github.com/Simonek1s/geima
 as the website repository; it was verified public and empty on 2026-09-06.
 Repository invitation acceptance resolved write access, and the source is now
 uploaded to `main`. The first Actions run passed installation and Svelte checks,
-then failed in `configure-pages` with Not Found because Pages is not enabled.
-The repository owner must select GitHub Actions in the Pages settings; the
-current collaborator has write access without administration access.
-Enable Pages from GitHub Actions and deploy after
-the release checks pass. Keep the support/privacy URLs public, directly reachable, HTTPS, and
-free of placeholder copy. Check mobile readability and direct page loads on the
-actual host. No public website URL has been deployed or verified yet.
+then failed in `configure-pages` with Not Found because Pages was not enabled.
+Pages was later enabled with the default Jekyll build, which published the
+README instead of the Svelte website. The public homepage and successful Jekyll
+run 34037630711 confirmed this on 2026-09-06.
+
+The repository owner must select **Settings → Pages → Build and deployment →
+Source → GitHub Actions**. The current collaborator has write access without
+permission to change that setting. Use the existing **Deploy website to GitHub
+Pages** workflow after the release checks pass; developer identity is now set,
+while privacy review remains incomplete. The currently published README is not a
+verified support or privacy destination. Keep the final support/privacy URLs
+public, directly reachable, HTTPS, and free of placeholder copy. Check mobile
+readability and direct page loads on the actual Svelte deployment before using
+the URLs in App Store Connect.
 
 The optional App Store link stays absent until a real product URL is supplied.
 The site uses no Apple download badge. If adding one later, use official artwork,
@@ -93,6 +107,11 @@ the correct destination and required trademark credit. Screenshot files are
 unaltered development captures, not certified screenshots of the signed v1.
 The inherited filenames do not consistently describe their pictured scenery;
 website captions/alt text describe what is actually visible.
+
+The revised listing copy, screenshot sequence, and icon treatment are documented
+in `docs/app-store-listing.md`. They are implemented on the website but remain a
+proposal for App Store Connect until reviewed against the signed build. The icon
+file in the website does not update the iOS asset catalog automatically.
 
 Trader status, EU contact requirements, final privacy legal review, Apple review
 metadata, and accessibility answers remain the owner's release work. No universal

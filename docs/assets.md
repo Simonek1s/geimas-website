@@ -14,9 +14,15 @@ the images. Captions stay scene-neutral; alt text describes the visible gameplay
 Regenerate screenshots from the final release if its appearance changes. Keep
 this provenance document current when replacing any images.
 
-`static/icon.png` is copied from `../geimas/public/icon.png`. The source app's
-`CREDITS.md` attributes game models to Kenney's CC0 kits. No new artwork or
-third-party download badge is introduced by the website.
+`static/icon.png` is a 1024 × 1024 marketing variant derived only from
+`../geimas/appstore/icon-1024.png`. An AI-assisted edit enlarges the existing
+orange car and intensifies the existing road, cyan chevron, and horizon glow into
+a high-contrast speed tunnel. The edit was constrained to those source elements:
+no characters, vehicles, scenery, text, logos, or third-party art were added.
+The source app's `CREDITS.md` attributes game models to Kenney's CC0 kits. No
+third-party download badge is introduced by the website. Keep the source app's
+final icon asset in sync separately if this variant is approved for the iOS
+binary.
 
 Inter and Barlow Condensed are installed through their Fontsource npm packages
 and served locally. Their bundled license notices are copied into

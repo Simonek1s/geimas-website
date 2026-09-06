@@ -1,7 +1,7 @@
 # Static website architecture
 
 Status: implemented and uploaded to the approved repository;
-website deployment awaits Pages enablement and release details.
+Svelte deployment awaits the correct Pages source and release details.
 Decision date: 2026-09-06.
 
 The website is a standalone npm/SvelteKit project in `geimas-website`, using
@@ -38,17 +38,33 @@ invalid dates, unsupported advertising scope, and inconsistent deployment URLs.
 The local preview may show draft policy status; publication must not. The owner
 selected [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website) as
 the destination repository. It was verified public and empty before connecting
-the local source. No custom domain, public website deployment, or App Store app
-change has been performed. The required final public URLs come from the
-deployment result.
+the local source. No custom domain or App Store app change has been performed.
+Verify the final public URLs against a successful Svelte deployment.
 
 After repository invitation acceptance, the `main` branch was uploaded and now
 tracks `origin/main`. GitHub confirms write access without administration access.
 The first Actions run successfully installed the lockfile and passed Svelte
-checks, then `configure-pages` returned Not Found because Pages is not enabled.
-The repository owner must select GitHub Actions as the Pages source. The legal
-identity and privacy-review release checks still apply after that setting is
-enabled; no public website has been deployed.
+checks, then `configure-pages` returned Not Found because Pages was not enabled.
+Pages was subsequently enabled with GitHub's default branch/Jekyll build. Run
+34037630711 successfully published the repository README as HTML, verified on
+the public URL on 2026-09-06. That run never built the Svelte app.
+
+The implemented deployment remains the existing custom workflow uploading only
+`build/`. The owner must select **Settings → Pages → Build and deployment →
+Source → GitHub Actions**; no replacement workflow or committed build output
+is needed. The linked account cannot change that setting. Privacy-review
+validation still blocks the Svelte release. A failed custom
+workflow does not replace the previously published Jekyll page.
+
+Retrying custom run 34037490323 after Pages enablement passed dependency
+installation, Svelte checks, and `configure-pages`, then stopped at the two
+expected identity/privacy-review errors. No Svelte artifact was deployed.
+
+The owner subsequently supplied the responsible developer identity; it is now
+implemented in `src/lib/site.json`. The remaining `privacyReviewed` flag is this
+project's assertion that release behavior and support operations match the
+policy, not an Apple approval status. It remains false while those checks are
+incomplete, including the app source's AdMob initialization.
 
 References: [SvelteKit static adapter](https://svelte.dev/docs/kit/adapter-static),
 [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

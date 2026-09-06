@@ -6,22 +6,22 @@
 </script>
 
 <PageMeta
-  title="Drift Dash — One more run."
-  description="Meet Drift Dash, an endless arcade police-chase racer for iPhone. Explore real gameplay screenshots, get support, and read our privacy policy."
+  title="Drift Dash — Escape the chase."
+  description="Outrun the cops, dodge traffic, collect coins, and beat your best in Drift Dash, a colorful endless arcade racer for iPhone."
   path="/"
 />
 
 <main id="main">
   <section class="hero shell" aria-labelledby="hero-title">
     <div class="hero-copy">
-      <p class="eyebrow"><span class="status-dot"></span> ENDLESS ARCADE RACING</p>
-      <h1 id="hero-title">ONE MORE<br /><span>RUN.</span></h1>
+      <p class="eyebrow"><span class="status-dot"></span> ENDLESS POLICE CHASE</p>
+      <h1 id="hero-title">CAN YOU<br /><span>ESCAPE?</span></h1>
       <p class="hero-description">
-        Lose the cops. Chase your best.<br />Turn a quick escape into your next obsession.
+        Dodge traffic. Hit the boost. Lose the cops.<br />Your next record is one clean move away.
       </p>
       <div class="hero-actions">
         <a class="button button-orange" href="#screenshots"
-          >Explore the game <span aria-hidden="true">↗</span></a
+          >Enter the chase <span aria-hidden="true">↗</span></a
         >
         {#if site.appStoreUrl}
           <a class="text-link" href={site.appStoreUrl}
@@ -32,12 +32,12 @@
         {/if}
       </div>
       <div class="hero-facts">
-        <span>Endless roads</span><span>Your own garage</span><span>Pure arcade energy</span>
+        <span>Instant arcade runs</span><span>Unlockable cars</span><span>Relentless speed</span>
       </div>
     </div>
     <div class="hero-visual">
       <div class="hero-outline" aria-hidden="true"></div>
-      <span class="vertical-label" aria-hidden="true">BUILT FOR THE CHASE / DRIFT DASH</span>
+      <span class="vertical-label" aria-hidden="true">NO FINISH LINE / DRIFT DASH</span>
       <img
         class="hero-shot hero-shot-back"
         src={`${base}/screenshots/01-open-road.png`}
@@ -59,42 +59,42 @@
   </section>
 
   <div class="race-strip" aria-hidden="true">
-    <span>CHASE THE HORIZON</span><span>↗</span><span>MAKE YOUR ESCAPE</span><span>↗</span><span
-      >ONE MORE RUN</span
+    <span>DODGE THE TRAFFIC</span><span>↗</span><span>LOSE THE COPS</span><span>↗</span><span
+      >SMASH YOUR BEST</span
     ><span>↗</span>
   </div>
 
   <section class="game-section shell" id="the-game" aria-labelledby="game-title">
     <div class="section-intro">
       <p class="eyebrow">01 / THE GAME</p>
-      <h2 id="game-title">Small screen.<br /><span>Big getaway.</span></h2>
+      <h2 id="game-title">No finish line.<br /><span>No easy way out.</span></h2>
     </div>
     <div class="game-details">
-      <p class="lead">The road keeps going. So do you.</p>
+      <p class="lead">The chase starts fast. It only gets faster.</p>
       <p>
-        Drift through bends, weave through traffic, and stay ahead of the chase in a colorful world
-        that never sits still. Collect coins, build up your garage, and see how far your next run
-        takes you.
+        Weave through traffic, drift through bends, and stay ahead of the police in a colorful world
+        that never sits still. Collect coins, build your garage, and turn one quick run into a new
+        personal best.
       </p>
       <div class="feature-row">
         <span class="feature-number">01</span>
         <div>
-          <h3>Find your flow</h3>
-          <p>Changing scenery and an endless road keep every escape moving.</p>
+          <h3>Own the road</h3>
+          <p>Changing scenery, tight traffic, and an endless route keep every escape moving.</p>
         </div>
       </div>
       <div class="feature-row">
         <span class="feature-number">02</span>
         <div>
-          <h3>Make it your ride</h3>
-          <p>Unlock vehicles and upgrade their engine, grip, boost, and nitro.</p>
+          <h3>Build the getaway car</h3>
+          <p>Unlock vehicles and tune their engine, grip, boost, and nitro.</p>
         </div>
       </div>
       <div class="feature-row">
         <span class="feature-number">03</span>
         <div>
-          <h3>Beat your best</h3>
-          <p>Collect coins, complete missions, and come back for one more run.</p>
+          <h3>Push your luck</h3>
+          <p>Collect coins, complete missions, and chase a record worth one more run.</p>
         </div>
       </div>
     </div>
@@ -103,27 +103,33 @@
   <section class="screenshots-section" id="screenshots" aria-labelledby="screenshots-title">
     <div class="shell section-heading">
       <div>
-        <p class="eyebrow">02 / OUT ON THE ROAD</p>
-        <h2 id="screenshots-title">Catch a glimpse.</h2>
+        <p class="eyebrow">02 / THE CHASE</p>
+        <h2 id="screenshots-title">Five reasons to tap.</h2>
       </div>
-      <p>Five moments from the game.<br />Open any shot for the full picture.</p>
+      <p>Real gameplay. Zero fake renders.<br />Open any frame for the original capture.</p>
     </div>
     <div class="shell screenshot-grid">
       {#each screenshots as shot, i}
         <figure class="screenshot-card">
           <a
-            class="screenshot-link"
+            class={`screenshot-link theme-${shot.theme}`}
             href={`${base}/screenshots/${shot.file}`}
             aria-label={`Open screenshot: ${shot.title}`}
           >
-            <img
-              src={`${base}/screenshots/${shot.file}`}
-              alt={shot.alt}
-              width="1290"
-              height="2796"
-              loading="lazy"
-            />
-            <span class="shot-expand" aria-hidden="true">↗</span>
+            <span class="screenshot-hook">
+              <span>{shot.kicker}</span>
+              <strong>{shot.title}</strong>
+            </span>
+            <span class="screenshot-frame">
+              <img
+                src={`${base}/screenshots/${shot.file}`}
+                alt={shot.alt}
+                width="1290"
+                height="2796"
+                loading="lazy"
+              />
+              <span class="shot-expand" aria-hidden="true">↗</span>
+            </span>
           </a>
           <figcaption>
             <span class="shot-number">0{i + 1}</span>
@@ -136,7 +142,8 @@
       {/each}
     </div>
     <p class="shell screenshot-note">
-      Captured from the game’s development build. The final iOS release may differ.
+      Original development-build captures shown without retouching. The final iOS release may
+      differ.
     </p>
   </section>
 
