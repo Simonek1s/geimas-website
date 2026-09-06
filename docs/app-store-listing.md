@@ -46,7 +46,15 @@ availability, or mechanics not verified in the shipping build.
 5. `POLICE! / DON'T LOOK BACK.` — the chase payoff.
 
 The website presents these hooks around the five unchanged development captures
-and links every card to its original image. The icon uses only the existing car,
+and links every card to its original image. Its visual direction (implemented
+2026-09-06) follows the store-page conventions of the most downloaded endless
+runners: a single challenge question as the headline (“Can you outrun the
+cops?”), ALL-CAPS imperative verbs, three-to-five-word screenshot hooks, and
+saturated yellow, orange, pink, and cyan on a near-black purple. Every visual
+element other than the icon and the five captures is CSS: the sunburst and
+perspective road echo the icon, hazard stripes and crossing marquee strips carry
+the “one more run” loop, and each gallery card shows the speed and distance
+visible in that frame’s HUD. The icon uses only the existing car,
 road, cyan chevron, and glow artwork. Its close crop, explosive warm backlight,
 and cyan speed tunnel create a much stronger small-size silhouette. The final
 1024-pixel marketing icon was produced with an AI-assisted edit constrained to

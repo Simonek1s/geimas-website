@@ -12,18 +12,22 @@
   path="/support/"
 />
 
-<main id="main" class="shell document-main">
-  <a class="back-link" href={`${base}/`}>← Back to the game</a>
-  <header class="document-header">
-    <p class="eyebrow">THE PIT STOP / SUPPORT</p>
-    <h1>Let’s get you<br /><span>back on the road.</span></h1>
-    <p>
-      Something not quite right? Get in touch about game problems, feedback, or an idea for a future
-      update.
-    </p>
-  </header>
+<main id="main" class="document-page">
+  <div class="document-hero">
+    <div class="shell">
+      <a class="back-link" href={`${base}/`}><span aria-hidden="true">←</span> Back to the game</a>
+      <header class="document-header">
+        <p class="eyebrow">The pit stop / Support</p>
+        <h1>Stuck?<br /><span>Let’s get you back on the road.</span></h1>
+        <p>
+          Something not quite right? Get in touch about game problems, feedback, or an idea for a
+          future update.
+        </p>
+      </header>
+    </div>
+  </div>
 
-  <div class="support-layout">
+  <div class="shell document-main support-layout">
     <aside class="contact-card" aria-labelledby="contact-title">
       <span class="contact-icon" aria-hidden="true">↗</span>
       <h2 id="contact-title">Talk to the developer.</h2>
@@ -35,9 +39,7 @@
       </p>
       {#if site.developerAddress}<p>{site.developerAddress}</p>{/if}
       {#if site.developerPhone}<p>Phone: {site.developerPhone}</p>{/if}
-      <a class="button button-dark" href={supportLink}
-        >Email support <span aria-hidden="true">↗</span></a
-      >
+      <a class="btn btn-dark" href={supportLink}>Email support <span aria-hidden="true">↗</span></a>
     </aside>
 
     <div class="support-content prose">
@@ -62,7 +64,7 @@
       </section>
 
       <section class="faq" aria-labelledby="faq-title">
-        <p class="eyebrow">A QUICK TUNE-UP</p>
+        <p class="eyebrow">A quick tune-up</p>
         <h2 id="faq-title">Before you write.</h2>
         <details>
           <summary>The game feels slow or stutters.</summary>

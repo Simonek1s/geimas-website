@@ -198,3 +198,35 @@ absent. Five gameplay screenshots, the icon, and the stylesheet returned HTTP
 200 with appropriate content types. Updated publishing docs to record the live
 site. Website and app working trees were clean after the source push; the app
 was unchanged. Only deployment documentation changed after these checks.
+
+## 2026-09-06 — Loud store-page redesign of the website
+
+Rebuilt the homepage, shared layout, and stylesheet around the App Store
+conversion patterns of the most downloaded endless runners (Subway Surfers,
+Temple Run, Smashy Road: Wanted 2, Hill Climb Racing): one challenge question as
+the headline, ALL-CAPS imperative verbs, three-to-five-word screenshot hooks, and
+saturated yellow, orange, pink, and cyan against a near-black purple. The hero
+uses a CSS sunburst and perspective road derived from the icon’s own palette,
+three floating phone frames, hazard stripes, and two crossing marquee strips. The
+feature grid became five tilted colour cards; the gallery keeps the five untouched
+captures with per-frame HUD speed and distance chips; a cyan “one more run” band
+leads to support. Support and privacy pages received the same header treatment
+while keeping every section, anchor, and disclosure unchanged. The only graphics
+remain `icon.png` and the five original screenshots; all other shapes are CSS.
+Heavier Barlow Condensed (800/900 and italics) and Inter 800 weights are imported
+from the already-installed Fontsource packages. All motion is CSS-only, disabled
+under `prefers-reduced-motion`, and the output still contains no scripts.
+
+Limitations: the hero’s three stat tiles quote only numbers visible in the
+captures (278 km/h, 5225 m, 11779 coins) and are labelled as such; no ratings,
+download counts, badges, or store URL are claimed. The clickbait tone remains a
+conversion hypothesis, not a measured result, and the Svelte setup, routes,
+configuration, scripts, and workflow were not changed.
+
+Validation: svelte-check reported zero errors and warnings; root and
+`/geimas-website` builds passed verification (158 local links and assets, no
+scripts). Rendered pages were visually checked in Chrome at 1440 px and in a
+390 px viewport for the homepage, support, and privacy. Two review findings were
+fixed before completion: outlined headline words inherited a transparent stroke
+colour, and feature-card numbers overlapped titles on narrow cards. No tests were
+added for cosmetic changes.
