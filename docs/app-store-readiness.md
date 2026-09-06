@@ -77,6 +77,10 @@ omit mandatory privacy access. Inspect both links on the signed build.
 
 The owner selected [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website)
 as the website repository; it was verified public and empty on 2026-09-06.
+The source is committed locally and connected to that origin. Both the GitHub
+connector and a local Git push dry run lack write access; the latter returned
+HTTP 403. Repository access or authorized Git authentication must be resolved
+before upload. No source has been pushed yet.
 Upload the website source, enable Pages from GitHub Actions, and deploy after
 the release checks pass. Keep the support/privacy URLs public, directly reachable, HTTPS, and
 free of placeholder copy. Check mobile readability and direct page loads on the

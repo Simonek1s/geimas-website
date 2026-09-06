@@ -1,6 +1,7 @@
 # Static website architecture
 
-Status: implemented locally; destination repository approved; GitHub deployment not yet performed.
+Status: implemented and committed locally; destination repository approved;
+upload blocked by GitHub write access; website deployment not yet performed.
 Decision date: 2026-09-06.
 
 The website is a standalone npm/SvelteKit project in `geimas-website`, using
@@ -40,6 +41,12 @@ the destination repository. It was verified public and empty before connecting
 the local source. No custom domain, public website deployment, or App Store app
 change has been performed. The required final public URLs come from the
 deployment result.
+
+The local repository now has a committed `main` branch and the selected HTTPS
+origin. GitHub rejected a non-mutating `git push --dry-run` with HTTP 403 because
+the configured Git account lacks write access. The connector also reports no
+push permission. Grant repository access or authenticate an authorized account
+before uploading; no remote commits were created by this setup.
 
 References: [SvelteKit static adapter](https://svelte.dev/docs/kit/adapter-static),
 [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

@@ -16,6 +16,11 @@ Format source changes with `npm run format`.
 
 ## Publish with GitHub Pages
 
+The local `main` branch is committed and `origin` points to the repository below.
+Uploading currently requires GitHub write access: the configured Git account was
+denied. Give that account collaborator access or authenticate Git with an account
+that already has write access, then run `git push -u origin main`.
+
 1. Use [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website),
    the selected website repository, with a `main` branch.
 2. Complete `src/lib/site.json`: confirm the developer's legal identity and review

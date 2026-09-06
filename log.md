@@ -62,7 +62,11 @@ the main branch. Updated README and deployment/readiness documents to identify
 the selected repository instead of leaving repository selection as an open task.
 Verified the remote was public and empty through repository metadata and
 git ls-remote, so no existing source or history needs replacing. The GitHub
-connector reports read-only access; local Git push access is being checked.
-The legal identity and policy-review flag remain pending. No app code or website
+connector reports read-only access, and a local Git push dry run was rejected
+with HTTP 403 because the configured account lacks write access. Prepared the
+initial local source commit, including the workflow and all original screenshots;
+no remote commits were created. Documented the required access/authentication
+step and upload command. The legal identity and policy-review flag remain
+pending. Formatting and staged whitespace checks passed. No app code or website
 publication was changed, and runtime tests were not repeated for these Git and
 documentation-only changes.
