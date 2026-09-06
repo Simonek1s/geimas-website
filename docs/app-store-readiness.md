@@ -1,127 +1,131 @@
-# App Store website and v1 release
+# App Store website and current app
 
-Status: website implemented; ad-free v1 and developer identity approved by owner;
-privacy draft and app-release reconciliation pending. Updated: 2026-09-06.
+Status: current-source website disclosures approved by owner and implemented;
+website/source accuracy review completed; signed iOS submission checks pending.
+Updated: 2026-09-06.
 
-## Website scope
+## Approved scope
 
-The supplied `app-store-website-requirements.md` was the requirements baseline.
-Its Vilnius Benches-specific details do not describe Drift Dash: no bench data,
-CloudKit mirror, location collection, photos, Lithuanian localization, or iOS 26
-minimum was copied. The inspected Drift Dash UI is English. No unsupported
-minimum iOS version, age rating, store availability, or accessibility claim is
-published.
+The owner requested that the website describe the current app. This replaces
+using the earlier no-advertising v1 intention as a statement of current behavior.
+It authorizes accurate website disclosures; it does not change the game or
+establish that a production advertising release has been tested or approved.
 
-| App Store field      | Website destination                | State                                                                           |
-| -------------------- | ---------------------------------- | ------------------------------------------------------------------------------- |
-| Support URL          | Final HTTPS site URL + `/support/` | Implemented: visible owner-supplied email, mailto, issue-report guidance, FAQs  |
-| Privacy Policy URL   | Final HTTPS site URL + `/privacy/` | Implemented as draft; identity supplied, operational and release review pending |
-| Marketing URL        | Final HTTPS site URL + `/`         | Implemented: conversion-focused product copy and five supplied screenshots      |
-| Accessibility URL    | Omit                               | App accessibility has not been audited                                          |
-| Account deletion URL | Omit                               | No app accounts or account creation in inspected source                         |
+The inspected app checkout was clean at commit
+`0fff64aa9fba8208745b5a8c1e69f9e9dd6bb7f3`, package version `1.0.0`.
+The current working source and iOS setup script were reviewed. There is no
+`ios/` project in this checkout and AdMob is absent from its package manifest and
+lockfile. No signed iOS archive or device network trace was available, so native
+statements on the website are conditional on an iOS build including AdMob.
 
-The owner supplied the responsible developer's name, which is now implemented
-in `src/lib/site.json` and rendered in the policy. This records the owner's
-declaration; it does not independently verify the Apple account. Apple uses the
-legal name for individual developer accounts. Organizations may use a registered
-trade name when creating their first app. Keep the legal identity accurate;
-never infer it from an email address or Git author details.
+The supplied website requirements remain the baseline. Vilnius Benches-specific
+claims about CloudKit, location, photographs, localization, or an iOS minimum do
+not apply to Drift Dash and were not copied. No store availability, age rating,
+accessibility certification, or App Store product URL is invented.
 
-## Approved v1 data direction
+## Implemented behavior and evidence
 
-The owner explicitly confirmed **no ads in v1** and provided a public support
-email. `src/lib/cars.js` stores the garage, coins, records, missions, upgrades,
-cosmetics, and settings in local storage. No account, online leaderboard,
-developer save server, or separate analytics integration was found in the
-inspected current source. The site therefore describes the intended no-ads v1,
-separately from voluntarily sent support mail and GitHub hosting request logs.
+| Topic                  | Evidence in `../geimas`                                                                                                                          | Website disclosure                                                                                                 |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ |
+| Active game            | `index.html` → `src/main.js` → `src/game.js`; game imports `src/lib/ads.js`                                                                      | Current development game, without claiming a shipped iOS version                                                   |
+| Local saves            | `src/lib/cars.js`: localStorage save, garage, coins, upgrades, records, missions, cosmetics and preferences                                      | Saved on the device/browser; no developer cloud recovery                                                           |
+| Accounts and analytics | Active source has no account, cloud-save service, online leaderboard, or separate gameplay analytics integration; model fetches load game assets | No account/cloud save; SDK advertising processing disclosed separately                                             |
+| Browser rewards        | `Ads._sim()` displays a local timed overlay; non-native `ready()` makes the offer available                                                      | Browser previews simulate reward videos without contacting AdMob                                                   |
+| Native initialization  | `if (NATIVE) nativeSetup()`; plugin registry lookup; initialize then prepare; no plugin means no ad availability                                 | With AdMob enabled, ad requests can start before choosing a reward                                                 |
+| Reward placements      | `game.js`: revive, double run coins, double mission claims                                                                                       | Optional rewarded videos; play continues without watching                                                          |
+| Reward outcome         | Native completion is inferred from the SDK result; browser simulation has completion/early-close paths                                           | Failed or unfinished videos do not promise a reward; delivery issues can be reported                               |
+| iOS setup              | `ios-setup.sh` installs AdMob and adds ATT prompt text; default rewarded unit is Google's test unit, with an environment override                | Conditional native integration; production fill and monetization are not claimed                                   |
+| Tracking and consent   | Initialization passes `requestTrackingAuthorization: true`; no explicit UMP consent/info/privacy-options flow in active source                   | iOS may request tracking permission; no invented in-game privacy controls or consent-before-all-requests guarantee |
+| Support                | Owner-supplied identity/email; website mailto links; no form or retention automation                                                             | Email and attachments reach the support mailbox and remain until deleted; requests use the public address          |
+| Website                | Prerendered HTML with local assets and no scripts, cookies, storage, or analytics                                                                | Hosting request data is separate from game saves and advertising                                                   |
 
-Local game data remains until app data is deleted. Offloading retains data;
-device backups may retain or restore it. The developer cannot delete or recover
-local progress remotely. No unsupported in-app reset or recovery feature is
-promised. Email is handled through the owner-selected Gmail address; GitHub
-hosts the website. Their retention and international processing must be reflected
-in the final policy rather than making a blanket “we collect nothing” claim.
+Old placeholder comments at the top of `ads.js` say no network is wired up, but
+executable native code lower in the same file contradicts them. The executable
+paths are the source of truth. Browser simulation does not prove that a native
+build makes no advertising requests, and test ad units do not prove no SDK data
+processing. Declining ATT is not a general opt-out from all SDK data processing.
 
-## Before setting privacyReviewed to true
+## Privacy content review
 
-`privacyReviewed` is an implemented project release check, not an Apple review
-status or an application for approval. It records that the policy's descriptions
-match the app that will ship and the developer's actual support operations.
-Supplying the developer name completes the identity field, but does not confirm
-the remaining policy statements or resolve the app's active AdMob path.
+`privacyReviewed=true` now records the completed website/source accuracy review.
+It is an implemented project publication check, not legal sign-off, mailbox
+inspection, signed-build verification, or an Apple approval status. The owner
+supplied the responsible name; it was not inferred from another account.
 
-- The owner-supplied responsible name is now set in `src/lib/site.json`; add
-  address/phone only where applicable law or business circumstances require them.
-- Review the complete privacy draft against actual support operations: Gmail
-  account use, purposes/legal basis, retention criteria, mailbox security,
-  recipient roles, international processing and safeguards, and equal protection
-  by providers. The proposed legitimate-interest basis is not a legal finding.
-- Confirm the signed v1 has no AdMob initialization or SDK data collection,
-  including preloading before a player chooses an ad. Inspect a device build.
-- Update effective/updated dates and remove proposal wording when approved.
-  `privacyReviewed=true` removes the draft banner/noindex; the name must also be
-  present. This is a release assertion, not a substitute for verifying the app.
-- Reconcile App Store Connect privacy answers with the actual shipping build and
-  third-party SDKs. The website cannot complete that questionnaire automatically.
+The reviewed policy distinguishes local saves, browser reward simulation,
+conditional native advertising, voluntarily sent support mail, and hosting.
+Native SDK data categories and provider practices are attributed to Google.
+Policy and support pages no longer promise an ad-free v1, zero advertising
+tracking, or that network activity begins only after a reward button is tapped.
 
-## App source discrepancies: work still needed in ../geimas
+Unsupported claims about fixed support retention, marketing-list use, mailbox
+security practices, a legal basis, and blanket equal protection by providers
+were removed. The policy states the known email mechanism and request channel,
+without claiming an automatic deletion schedule or a verified response SLA.
+Google and GitHub provider retention is distinguished from app data deletion.
+Operational and legal questions cannot be established by inspecting app source.
 
-`src/lib/ads.js` calls `nativeSetup()` on native platforms, initializes the
-Capacitor AdMob plugin with tracking authorization, and preloads rewarded ads.
-`ios-setup.sh` installs `@capacitor-community/admob` and adds ATT prompt text.
-`APPSTORE.md` still describes an advertising-supported release. Merely omitting
-an ad unit or hiding buttons would not substantiate an ad-free policy: the native
-initialization, SDK installation, ad prompts, and reward/UI behavior must be
-reconciled for the signed v1. This website request does not alter the game.
+Update disclosures and reset the review flag when the app's data behavior,
+advertising integration, provider configuration, or support processes change.
+The publication script validates the current advertising scope, identity,
+review state, dates, and final HTTPS URL. Static verification checks the ad
+section, provider/tracking references, absence of stale ad-free promises, and
+absence of draft/noindex markers once reviewed.
 
-No working in-app support/privacy links were found. Add an accessible Help/About
-entry opening the final HTTPS URLs, including the policy link required by Apple.
-Do not copy the older app note advising against external links as a reason to
-omit mandatory privacy access. Inspect both links on the signed build.
+## Remaining signed-app and App Store checks
 
-## Publication and submission
+These are app-submission tasks, separate from publishing an accurate website
+about the current development version:
 
-The owner selected [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website)
-as the website repository; it was verified public and empty on 2026-09-06.
-Repository invitation acceptance resolved write access, and the source is now
-uploaded to `main`. The first Actions run passed installation and Svelte checks,
-then failed in `configure-pages` with Not Found because Pages was not enabled.
-Pages was later enabled with the default Jekyll build, which published the
-README instead of the Svelte website. The public homepage and successful Jekyll
-run 34037630711 confirmed this on 2026-09-06.
+- Generate and inspect the signed iOS build: installed SDK versions, plugin
+  registration, ad unit configuration, actual initialization/reward behavior,
+  privacy manifests, and network requests. The setup script installs unpinned
+  packages, so source inspection cannot establish the final SDK contents.
+- Check ATT and any applicable regional consent requirements before ad requests;
+  implement and test a consent/privacy-options flow where needed. The current
+  source has no such explicit UMP flow. Do not infer compliant consent behavior
+  from an ATT initialization option or source comments.
+- Add accessible in-app support/privacy links. No working links were found in
+  the current game. Verify both against the final public HTTPS destinations.
+- Reconcile App Store Connect privacy answers with the signed app and providers.
+  The current website makes no claim that all Apple requirements are satisfied.
+- Verify applicable controller/trader contact details, legal grounds, support
+  retention and request handling, international transfers, and the provider
+  protection commitments required by Apple's privacy-policy rules. These are
+  not verified by this source review.
 
-The repository owner must select **Settings → Pages → Build and deployment →
-Source → GitHub Actions**. The current collaborator has write access without
-permission to change that setting. Use the existing **Deploy website to GitHub
-Pages** workflow after the release checks pass; developer identity is now set,
-while privacy review remains incomplete. The currently published README is not a
-verified support or privacy destination. Keep the final support/privacy URLs
-public, directly reachable, HTTPS, and free of placeholder copy. Check mobile
-readability and direct page loads on the actual Svelte deployment before using
-the URLs in App Store Connect.
+## Website destinations and publishing
 
-The optional App Store link stays absent until a real product URL is supplied.
-The site uses no Apple download badge. If adding one later, use official artwork,
-the correct destination and required trademark credit. Screenshot files are
-unaltered development captures, not certified screenshots of the signed v1.
-The inherited filenames do not consistently describe their pictured scenery;
-website captions/alt text describe what is actually visible.
+| App Store field      | Destination                        | State                                                                                     |
+| -------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------- |
+| Support URL          | Final HTTPS site URL + `/support/` | Implemented: developer contact, issue-report guidance and current-app FAQs                |
+| Privacy Policy URL   | Final HTTPS site URL + `/privacy/` | Current-source disclosures implemented and reviewed; signed-app/legal checks above remain |
+| Marketing URL        | Final HTTPS site URL + `/`         | Implemented: game features and five original development screenshots                      |
+| Accessibility URL    | Omit                               | No app accessibility audit                                                                |
+| Account deletion URL | Omit                               | No app accounts in current source                                                         |
 
-The revised listing copy, screenshot sequence, and icon treatment are documented
-in `docs/app-store-listing.md`. They are implemented on the website but remain a
-proposal for App Store Connect until reviewed against the signed build. The icon
-file in the website does not update the iOS asset catalog automatically.
+The selected repository is
+[Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website).
+Write access is available. The last inspected live page was the README from
+GitHub's default Jekyll run 34037630711. The owner must select **Settings → Pages
+→ Build and deployment → Source → GitHub Actions**; the linked collaborator
+cannot change that setting. The existing custom workflow builds with npm and
+uploads only `build/`. Its earlier attempts stopped on the then-incomplete
+identity/privacy check. The updated website review no longer depends on making
+the app ad-free.
 
-Trader status, EU contact requirements, final privacy legal review, Apple review
-metadata, and accessibility answers remain the owner's release work. No universal
-Terms/EULA page or Lithuanian translation was added beyond the stated scope.
+Verify the successful Svelte deployment and direct support/privacy URLs before
+entering them in App Store Connect. Keep screenshot provenance in `docs/assets.md`;
+listing copy and visual direction in `docs/app-store-listing.md` remain proposals
+for App Store Connect. Website assets do not update the iOS asset catalog.
 
 ## Primary references checked on 2026-09-06
 
+- [Apple App Review Guidelines](https://developer.apple.com/app-store/review/guidelines/): support/privacy access and policy disclosure requirements, including providers and retention/deletion.
 - [Apple platform version fields](https://developer.apple.com/help/app-store-connect/reference/app-information/platform-version-information): Support URL required; Marketing URL optional.
-- [Apple App Review Guidelines, 1.5 and 5.1.1](https://developer.apple.com/app-store/review/guidelines/): contact access, privacy policy disclosure, third-party protection, retention/deletion, and in-app privacy access.
-- [Apple developer names](https://developer.apple.com/help/app-store-connect/create-an-app-record/set-your-developer-name): individual legal name versus an organization's registered trade name.
-- [Google iOS SDK disclosure](https://developers.google.com/admob/ios/privacy/data-disclosure): SDK presence must be reconciled with App Privacy answers; the policy does not describe an AdMob release.
-- [GitHub privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement): hosting/infrastructure processing.
-- [Google privacy policy](https://policies.google.com/privacy): support-mail provider processing.
+- [Google Mobile Ads iOS data disclosure](https://developers.google.com/admob/ios/privacy/data-disclosure): SDK data categories and the developer's responsibility to check the installed SDK.
+- [Google UMP iOS guidance](https://developers.google.com/admob/ios/privacy): consent status, required forms, privacy options, and when to request ads.
+- [Capacitor AdMob plugin](https://github.com/capacitor-community/admob): SDK configuration, tracking authorization, consent and reward interfaces; the current app has no installed/pinned AdMob version.
+- [Apple tracking controls](https://support.apple.com/en-us/102420): iOS tracking permission and IDFA access.
+- [Google partner-app data use](https://policies.google.com/technologies/partner-sites), [privacy policy](https://policies.google.com/privacy), and [retention](https://policies.google.com/technologies/retention): provider processing and controls.
+- [GitHub privacy statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement): hosting request information and provider processing.

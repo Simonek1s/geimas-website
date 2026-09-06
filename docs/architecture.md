@@ -1,70 +1,66 @@
 # Static website architecture
 
-Status: implemented and uploaded to the approved repository;
-Svelte deployment awaits the correct Pages source and release details.
-Decision date: 2026-09-06.
+Status: implemented; current-app disclosure review completed locally;
+public deployment must be verified. Updated: 2026-09-06.
 
-The website is a standalone npm/SvelteKit project in `geimas-website`, using
-`../geimas` only as source material for product facts and supplied assets. This
-keeps the App Store's required support/privacy URLs independent of the game
-runtime. The owner explicitly selected npm, Svelte, and GitHub Pages, which take
-precedence over the Sites skill's default framework and hosting workflow.
+This is a standalone npm/SvelteKit project. `../geimas` provides source evidence
+and original game assets, but is not a build dependency. The owner selected
+npm, Svelte, and GitHub Pages; those choices take precedence over Sites defaults.
 
-`@sveltejs/adapter-static` writes `build/index.html`, `build/support/index.html`,
-and `build/privacy/index.html`. All routes are prerendered with trailing slashes.
-Client hydration is disabled; normal links, native disclosure elements, and
-static HTML work without scripts. There is no database, account system, form
-backend, runtime server, analytics, tracking, or browser persistence.
+`adapter-static` produces homepage, support and privacy HTML in `build/`.
+All routes are prerendered with trailing slashes and `csr=false`. There is no
+runtime server, database, account system, form backend, client script, analytics,
+cookie, or browser persistence. Links and native disclosure elements work in
+static HTML. Fonts and game screenshots are hosted with the site.
 
-`src/lib/site.json` holds public release metadata. Route components own page
-content; the layout owns navigation and fonts. `PageMeta.svelte` adds per-page
-titles, descriptions, and canonical URLs when `VITE_SITE_URL` is provided.
-All internal routes and asset paths use SvelteKit's `base` value. Fonts are local
-npm assets; original gameplay PNGs are committed with the site.
+Public identity, contact details, policy dates, and advertising scope live in
+`src/lib/site.json`. Components own page content; the shared layout owns fonts
+and navigation. All internal routes and assets use `$app/paths` base.
+`PageMeta.svelte` derives canonical metadata from `VITE_SITE_URL` when supplied.
 
-The Pages workflow installs the lockfile with Node 22 and runs Svelte checks.
-Pull requests build under a repository path and verify local links/assets without
-deployment privileges. Main builds derive `BASE_PATH` and `VITE_SITE_URL` from
-`actions/configure-pages`, validate release metadata, and upload only `build/`.
-A dependent deployment job alone receives `pages: write` and `id-token: write`.
-Per-ref concurrency cancels superseded builds, not unrelated pull requests.
+## Current-app disclosure contract
 
-`scripts/verify-build.mjs` checks required HTML pages, privacy sections, visible
-email links, all local HTML/CSS references and anchors, screenshot count, and
-absence of scripts and insecure links. The same checks run at root and a project
-prefix. `scripts/check-release.mjs` rejects unfinished identity/policy review,
-invalid dates, unsupported advertising scope, and inconsistent deployment URLs.
+Approved by the owner and implemented: describe the current app, including its
+browser reward simulation and conditional native AdMob integration. The earlier
+ad-free v1 intention is not evidence of current behavior. The current advertising
+value is `rewarded-admob-native`. Source evidence, source revision, conditional
+native behavior, and remaining submission work are in `app-store-readiness.md`.
 
-The local preview may show draft policy status; publication must not. The owner
-selected [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website) as
-the destination repository. It was verified public and empty before connecting
-the local source. No custom domain or App Store app change has been performed.
-Verify the final public URLs against a successful Svelte deployment.
+`privacyReviewed` is a website/source accuracy assertion. It does not certify
+support operations, a signed iOS build, legal compliance, or App Store approval.
+The review is complete for the current disclosures: unsupported operational
+promises were removed rather than treated as confirmed. Set the flag false
+when data behavior, relevant provider configuration, or disclosures change;
+update the content and review evidence before marking it true again. Draft
+builds remain possible locally, while publication requires reviewed content.
 
-After repository invitation acceptance, the `main` branch was uploaded and now
-tracks `origin/main`. GitHub confirms write access without administration access.
-The first Actions run successfully installed the lockfile and passed Svelte
-checks, then `configure-pages` returned Not Found because Pages was not enabled.
-Pages was subsequently enabled with GitHub's default branch/Jekyll build. Run
-34037630711 successfully published the repository README as HTML, verified on
-the public URL on 2026-09-06. That run never built the Svelte app.
+## Validation and GitHub Pages
 
-The implemented deployment remains the existing custom workflow uploading only
-`build/`. The owner must select **Settings → Pages → Build and deployment →
-Source → GitHub Actions**; no replacement workflow or committed build output
-is needed. The linked account cannot change that setting. Privacy-review
-validation still blocks the Svelte release. A failed custom
-workflow does not replace the previously published Jekyll page.
+`scripts/check-release.mjs` validates identity, contact format, reviewed content,
+advertising scope, dates, optional App Store destination, and the final HTTPS
+URL/base-path pairing. `scripts/verify-build.mjs` checks three required pages,
+local links/assets/anchors, metadata, contact and privacy sections, five
+screenshots, and absence of scripts/insecure links. It also checks native ad
+references and rejects stale ad-free claims and reviewed pages with draft or
+noindex markers. It has no dependency on the sibling app checkout.
 
-Retrying custom run 34037490323 after Pages enablement passed dependency
-installation, Svelte checks, and `configure-pages`, then stopped at the two
-expected identity/privacy-review errors. No Svelte artifact was deployed.
+The workflow uses Node 22, npm ci and Svelte checks. Pull requests build under
+the repository path with no deployment privileges. Main uses `configure-pages`
+for `BASE_PATH` and `VITE_SITE_URL`, validates metadata, builds/verifies, and
+uploads only `build/`. A dependent deploy job receives `pages: write` and
+`id-token: write`. Per-ref concurrency cancels only superseded builds.
 
-The owner subsequently supplied the responsible developer identity; it is now
-implemented in `src/lib/site.json`. The remaining `privacyReviewed` flag is this
-project's assertion that release behavior and support operations match the
-policy, not an Apple approval status. It remains false while those checks are
-incomplete, including the app source's AdMob initialization.
+The approved remote is
+[Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website).
+Source upload and collaborator write access were verified. The last inspected
+public page was the README produced by GitHub's default Jekyll run 34037630711.
+The owner must choose **Settings → Pages → Build and deployment → Source →
+GitHub Actions**, since the collaborator cannot change the source. The custom
+Svelte workflow already exists; no extra template or committed build output
+is needed. Failed workflows leave the previously published page in place.
+Verify the public Svelte deployment before treating its URLs as usable for
+App Store Connect. No custom domain or game-source changes are part of this
+website implementation.
 
 References: [SvelteKit static adapter](https://svelte.dev/docs/kit/adapter-static),
 [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).

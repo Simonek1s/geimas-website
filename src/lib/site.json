@@ -5,8 +5,8 @@
   "developerAddress": "",
   "developerPhone": "",
   "appStoreUrl": "",
-  "advertising": "none-v1",
-  "privacyReviewed": false,
+  "advertising": "rewarded-admob-native",
+  "privacyReviewed": true,
   "policyEffectiveDate": "2026-09-06",
   "policyUpdatedDate": "2026-09-06"
 }

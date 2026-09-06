@@ -12,8 +12,8 @@
 - Keep homepage, /support/, and /privacy/ working on direct requests without an SPA fallback.
 - Prefix internal routes and assets with $app/paths base. CI uses configure-pages base_path/base_url for project, user, and custom-domain sites.
 - Keep public identity, support email, dates, and release details in src/lib/site.json; never invent identity or contact details.
-- The owner approved no advertising in v1. App source still has AdMob code; track release reconciliation in docs/app-store-readiness.md.
-- Keep privacyReviewed=false until identity, operational policy, and the actual no-ads release are verified.
+- Describe the current app: browser reward simulations and conditional native AdMob integration; record source evidence in docs/app-store-readiness.md.
+- privacyReviewed records a website/source accuracy review, not signed-app or legal approval. Reset it when app data behavior or disclosures change; never invent support operations.
 - Keep release validation in the Pages workflow. Pull requests validate without publishing; only main deploys with Pages/OIDC permissions.
 - Reuse original app screenshots in static/screenshots; do not generate or alter gameplay evidence. Preserve asset provenance in docs/assets.md.
 - Host fonts locally. Do not invent an App Store URL, rating, availability date, accessibility certification, or badge.

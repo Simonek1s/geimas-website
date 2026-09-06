@@ -23,11 +23,12 @@ the current collaborator has write access without permission to change it.
 
 1. Use [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website),
    the selected website repository, with a `main` branch.
-2. The owner-supplied developer identity is set in `src/lib/site.json`. Review the
-   policy and v1 release against `docs/app-store-readiness.md`, then set
-   `privacyReviewed` to `true` once the statements match the actual app and support
-   practices. This is this project's review flag, not an Apple approval status.
-   Contact details are public; never put secrets here.
+2. Public identity and current-app disclosures are configured in
+   `src/lib/site.json`. The policy covers browser reward simulations and native
+   AdMob integration. Reset `privacyReviewed` when app data behavior or policy
+   copy changes, review against `docs/app-store-readiness.md`, then mark the
+   content reviewed. This is a website accuracy check, not signed-app or Apple
+   approval. Contact details are public; never put secrets here.
 3. As the repository owner, open
    [Settings → Pages](https://github.com/Simonek1s/geimas-website/settings/pages)
    and select **Build and deployment → Source → GitHub Actions**. Publishing
@@ -60,5 +61,5 @@ Edit copy in `src/routes/`, styles in `src/app.css`, and screenshot captions in
 `src/lib/screenshots.js`. Screenshot originals came from `../geimas/appstore/`;
 this site has no build dependency on that app. Keep App Store copy and visual
 direction in `docs/app-store-listing.md`. See `docs/` for scope and release
-requirements. The app itself still needs its AdMob path disabled for v1 and
-working links to the final support and privacy URLs.
+requirements. Before App Store submission, verify the signed app's actual ad and
+consent behavior and add working links to the final support and privacy URLs.

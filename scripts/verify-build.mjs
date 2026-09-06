@@ -74,6 +74,13 @@ for (const file of files.filter((path) => path.endsWith('.html') || path.endsWit
       !/\b(?:TODO|Lorem ipsum|example\.com|your-email)\b/i.test(content),
       `Placeholder content: ${file}`
     );
+    if (site.privacyReviewed) {
+      assert(!/\bnoindex\b/i.test(content), `Reviewed pages must not be marked noindex: ${file}`);
+      assert(
+        !content.includes('Policy draft'),
+        `Reviewed pages must not show a draft notice: ${file}`
+      );
+    }
     if (process.env.VITE_SITE_URL) {
       const pagePath = `/${relative(output, file).replace(/index\.html$/, '')}`;
       assert(
@@ -90,8 +97,31 @@ const support = readFileSync(resolve(output, 'support/index.html'), 'utf8');
 assert(support.includes(`mailto:${site.supportEmail}`), 'Support needs a working email link');
 assert(support.includes(site.supportEmail), 'Support email must be visible');
 const privacy = readFileSync(resolve(output, 'privacy/index.html'), 'utf8');
-for (const section of ['game-data', 'support-data', 'website-data', 'retention', 'your-choices']) {
+for (const section of [
+  'game-data',
+  'advertising-data',
+  'support-data',
+  'website-data',
+  'retention',
+  'your-choices'
+]) {
   assert(privacy.includes(`id="${section}"`), `Missing required privacy topic: ${section}`);
+}
+if (site.advertising === 'rewarded-admob-native') {
+  assert(
+    privacy.includes('https://developers.google.com/admob/ios/privacy/data-disclosure'),
+    'Native AdMob disclosures need the provider data-use reference'
+  );
+  assert(
+    privacy.includes('https://support.apple.com/en-us/102420'),
+    'Native advertising disclosures need usable iOS tracking guidance'
+  );
+  assert(
+    !/no ads in v1|ad-free v1|no advertising consent in v1|version 1 is designed to ship without advertising/i.test(
+      `${support} ${privacy}`.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ')
+    ),
+    'The current app has a native advertising integration; remove outdated ad-free v1 promises'
+  );
 }
 assert.equal(
   files.filter((path) => dirname(path) === resolve(output, 'screenshots') && path.endsWith('.png'))

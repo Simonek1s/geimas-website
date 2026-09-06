@@ -11,13 +11,13 @@ if (
 ) {
   problems.push('Set a real, monitored supportEmail.');
 }
-if (site.advertising !== 'none-v1')
+if (site.advertising !== 'rewarded-admob-native')
   problems.push(
-    'The current policy only covers the confirmed ad-free v1. Update the policy for any other release.'
+    'The current policy covers browser reward simulations and native AdMob integration. Review the policy before changing that scope.'
   );
 if (site.privacyReviewed !== true)
   problems.push(
-    'Review the policy and no-ads release checklist in docs/app-store-readiness.md, then set privacyReviewed to true.'
+    'Check the website disclosures against the current app source in docs/app-store-readiness.md, then set privacyReviewed to true.'
   );
 for (const key of ['policyEffectiveDate', 'policyUpdatedDate']) {
   const value = site[key];
@@ -72,5 +72,5 @@ if (problems.length) {
   process.exit(1);
 }
 console.log(
-  'Public contact details, policy review, v1 scope, dates, and deployment URL are configured.'
+  'Public contact details, current-app policy review, advertising scope, dates, and deployment URL are configured.'
 );

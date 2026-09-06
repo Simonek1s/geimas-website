@@ -88,19 +88,39 @@
           </p>
         </details>
         <details>
-          <summary>Do I need an account? Does v1 have ads?</summary>
+          <summary>Do I need an account?</summary>
           <p>
-            No account is needed. Version 1 is designed to ship without advertising or advertising
-            tracking. Your game progress stays on your device.
+            No account is needed. Your game progress stays on your device; the current game has no
+            developer-operated cloud save or online leaderboard.
+          </p>
+        </details>
+        <details>
+          <summary>Does the current game have ads?</summary>
+          <p>
+            The game includes optional rewarded videos for continuing eligible runs, doubling run
+            coins, and earning bonus mission rewards. Browser previews simulate these videos. iOS
+            builds with Google AdMob enabled can show network ads; the ad service may connect and
+            preload an ad when the game starts, before you choose a reward. You can keep playing
+            without watching a video. Read about <a href={`${base}/privacy/#advertising-data`}
+              >advertising and privacy</a
+            >.
+          </p>
+        </details>
+        <details>
+          <summary>A reward video is unavailable or didn’t give a bonus.</summary>
+          <p>
+            A bonus offer may be hidden when an ad is unavailable. A failed or unfinished video does
+            not award a bonus. If a completed video does not give the expected reward, tell us which
+            offer you chose and what happened, along with your app version and device model.
           </p>
         </details>
         <details>
           <summary>How can I delete my data?</summary>
           <p>
             Use iOS Settings → General → iPhone Storage → Drift Dash → Delete App to remove local
-            game data. Offloading the app keeps its data. To request deletion of support
-            correspondence, email us. See <a href={`${base}/privacy/#your-choices`}
-              >your privacy choices</a
+            game data. Offloading the app keeps its data. For a browser preview, clear that game's
+            site data in your browser. To request deletion of support correspondence, email us. See <a
+              href={`${base}/privacy/#your-choices`}>your privacy choices</a
             > for details about device backups and service providers.
           </p>
         </details>

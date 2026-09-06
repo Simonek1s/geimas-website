@@ -158,3 +158,34 @@ the remaining privacy-review failure. Rechecked the app's AdMob initialization
 and iOS setup references, and Apple's published policy-disclosure requirements.
 Formatting and whitespace checks passed. No deployment was performed, and
 existing unrelated storefront changes were preserved.
+
+## 2026-09-06 — Match disclosures to the current app
+
+Updated the website's privacy and support content to describe the current app
+instead of treating the earlier no-ads intention as implemented behavior.
+Reviewed the clean app source at commit 0fff64aa9fba8208745b5a8c1e69f9e9dd6bb7f3.
+The browser uses a local reward simulation; the native code conditionally starts
+AdMob and preloads before a reward is selected. The checkout has no generated
+iOS project and no AdMob dependency in its manifest or lockfile, so the policy
+conditions native claims on builds that include the integration.
+
+Added provider-attributed advertising data categories, tracking controls, reward
+availability guidance, and browser-save deletion instructions. Removed stale
+ad-free promises and unsupported support retention/security/legal assertions.
+Updated the advertising scope and marked the website/source review complete;
+AGENTS, README, and decision docs now distinguish this content review from
+signed-build testing, legal review, and Apple approval. Kept release validation
+and added output checks for the ad disclosures, stale ad-free copy, and reviewed
+pages showing draft/noindex markers. The game itself was not modified.
+
+Validation: Svelte reported zero errors/warnings. Root and project-path builds
+passed static verification for three pages, five screenshots, and 117 local
+links/assets, including project-path canonical URLs. Publication validation
+passed for the configured public URL; temporary fixtures rejected outdated
+no-ads scope and an unreviewed policy. Evaluating the unchanged app ad module
+with a mock native runtime confirmed no browser SDK calls, unavailable ads with
+no native plugin, preloading at native initialization, and preloading after a
+video. This does not verify a signed device build or live SDK traffic. Primary
+Google and Apple sources were checked for provider data and tracking controls.
+Formatting and whitespace checks passed. Prepared the corrections for the
+existing GitHub Pages workflow; deployment verification follows the push.
