@@ -189,3 +189,12 @@ video. This does not verify a signed device build or live SDK traffic. Primary
 Google and Apple sources were checked for provider data and tracking controls.
 Formatting and whitespace checks passed. Prepared the corrections for the
 existing GitHub Pages workflow; deployment verification follows the push.
+
+Deployment result: pushed the corrections as commit 6f6a877. Custom GitHub
+Actions run 34039301073 passed both build and deploy. Direct public homepage,
+support, and privacy requests returned HTTP 200 with current Svelte content,
+correct canonical URLs, and no draft/noindex markers. The old Jekyll README was
+absent. Five gameplay screenshots, the icon, and the stylesheet returned HTTP
+200 with appropriate content types. Updated publishing docs to record the live
+site. Website and app working trees were clean after the source push; the app
+was unchanged. Only deployment documentation changed after these checks.

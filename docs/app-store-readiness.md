@@ -1,7 +1,8 @@
 # App Store website and current app
 
 Status: current-source website disclosures approved by owner and implemented;
-website/source accuracy review completed; signed iOS submission checks pending.
+website/source accuracy review and public deployment verified;
+signed iOS submission checks pending.
 Updated: 2026-09-06.
 
 ## Approved scope
@@ -106,16 +107,22 @@ about the current development version:
 
 The selected repository is
 [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website).
-Write access is available. The last inspected live page was the README from
-GitHub's default Jekyll run 34037630711. The owner must select **Settings → Pages
-→ Build and deployment → Source → GitHub Actions**; the linked collaborator
-cannot change that setting. The existing custom workflow builds with npm and
-uploads only `build/`. Its earlier attempts stopped on the then-incomplete
-identity/privacy check. The updated website review no longer depends on making
-the app ad-free.
+Custom workflow run
+[34039301073](https://github.com/Simonek1s/geimas-website/actions/runs/34039301073)
+successfully built and deployed commit `6f6a877` with the updated disclosures.
+The live [website](https://simonek1s.github.io/geimas-website/),
+[support](https://simonek1s.github.io/geimas-website/support/), and
+[privacy](https://simonek1s.github.io/geimas-website/privacy/) pages returned HTTP
+200 with the correct Svelte content and canonical URLs. Styles, icon, and all
+five screenshots also returned HTTP 200. The old Jekyll README is no longer the
+live homepage. The updated website review no longer depends on making the app
+ad-free.
 
-Verify the successful Svelte deployment and direct support/privacy URLs before
-entering them in App Store Connect. Keep screenshot provenance in `docs/assets.md`;
+Use **Settings → Pages → Build and deployment → Source → GitHub Actions** for
+the existing workflow; it uploads only `build/`. The linked collaborator has
+write access but cannot change the publishing-source setting. Keep the deployed
+URLs stable and recheck their disclosures against the signed app before
+submission. Keep screenshot provenance in `docs/assets.md`;
 listing copy and visual direction in `docs/app-store-listing.md` remain proposals
 for App Store Connect. Website assets do not update the iOS asset catalog.
 

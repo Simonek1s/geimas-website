@@ -16,10 +16,10 @@ Format source changes with `npm run format`.
 
 ## Publish with GitHub Pages
 
-The website source is uploaded to `main`, and the local branch tracks
-`origin/main`. Pages currently serves the README through GitHub's default Jekyll
-build. The repository owner must switch the publishing source to GitHub Actions;
-the current collaborator has write access without permission to change it.
+The Svelte site is live at
+[simonek1s.github.io/geimas-website](https://simonek1s.github.io/geimas-website/).
+The custom Pages workflow deploys `main`; homepage, support, privacy, styles, and
+all five screenshots were verified on the public host.
 
 1. Use [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website),
    the selected website repository, with a `main` branch.

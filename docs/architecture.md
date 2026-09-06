@@ -1,7 +1,7 @@
 # Static website architecture
 
-Status: implemented; current-app disclosure review completed locally;
-public deployment must be verified. Updated: 2026-09-06.
+Status: implemented; current-app disclosure review completed and public Svelte
+deployment verified. Updated: 2026-09-06.
 
 This is a standalone npm/SvelteKit project. `../geimas` provides source evidence
 and original game assets, but is not a build dependency. The owner selected
@@ -52,15 +52,16 @@ uploads only `build/`. A dependent deploy job receives `pages: write` and
 
 The approved remote is
 [Simonek1s/geimas-website](https://github.com/Simonek1s/geimas-website).
-Source upload and collaborator write access were verified. The last inspected
-public page was the README produced by GitHub's default Jekyll run 34037630711.
-The owner must choose **Settings → Pages → Build and deployment → Source →
-GitHub Actions**, since the collaborator cannot change the source. The custom
-Svelte workflow already exists; no extra template or committed build output
-is needed. Failed workflows leave the previously published page in place.
-Verify the public Svelte deployment before treating its URLs as usable for
-App Store Connect. No custom domain or game-source changes are part of this
-website implementation.
+Custom workflow run 34039301073 successfully deployed commit `6f6a877` to
+[the public site](https://simonek1s.github.io/geimas-website/), replacing the
+earlier Jekyll-rendered README. Direct homepage/support/privacy requests,
+canonical URLs, current disclosures, stylesheet, icon, and all five screenshots
+were verified on the host. The publishing source should remain **GitHub Actions**;
+the collaborator has write access but cannot change that setting. No extra
+workflow template or committed build output is needed. Failed workflows leave
+the previous deployment live. Signed-app and legal submission checks remain
+separate in `app-store-readiness.md`. No custom domain or game-source changes
+are part of this website implementation.
 
 References: [SvelteKit static adapter](https://svelte.dev/docs/kit/adapter-static),
 [GitHub Pages custom workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
